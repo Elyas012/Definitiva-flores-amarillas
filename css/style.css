@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+*{
+    font-family: 'Poppins',cursive;
+    box-sizing: border-box;
+}
+
+/* CONTENEDOR Y FONDO */
+body{
+    color: azure;
+    width: 100%;
+    min-height: 100vh; /* permite contenido más alto en móviles */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #0c2340 0%, #071428 55%, #04121a 100%);
+    overflow-x: hidden; /* evita scroll horizontal por imágenes absolutas */
+    padding: 20px 12px; /* separación en pantallas pequeñas */
+}
+
+/* BOTÓN */
+.botones{
+    padding: 9px;
+    border-radius: 80px;
+    background-color: transparent;
+    border: none;
+}
+
+.botones a{
+    background: linear-gradient(90deg, #ff4d6d 0%, #ff7aa2 100%);
+    padding: 12px 18px; /* más táctil en móviles */
+    border-radius: 80px;
+    color: #fff;
+    font-weight: 600;
+    display: inline-block;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(255,80,120,0.12);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.botones a:focus,
+.botones a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(255,80,120,0.18);
+    outline: none;
+}
+
+.botones a:active { transform: translateY(0); }
+.botones a:focus{ background-color: rgb(50, 194, 194); }
+
+/* SALTO Y GLOW EN EL TEXTO PRINCIPAL */
+.greetings{
+    font-size: clamp(3rem, 10vw, 7rem); /* responsive sin media-queries extras */
+    font-weight: 900;
+    z-index: 3;
+    line-height: 0.9;
+    text-align: center;
+}
+.greetings > span{ animation: glow 2.5s ease-in-out infinite; display:inline-block; }
+@keyframes glow{
+    0%,100%{ color: #fff; text-shadow: 0 0 12px #39c6d6, 0 0 50px #39c6d6, 0 0 100px #39c6d6; }
+    10%,90%{ color: #111; text-shadow: none; }
+}
+.greetings > span:nth-child(2){ animation-delay: .2s; }
+.greetings > span:nth-child(3){ animation-delay: .4s; }
+.greetings > span:nth-child(4){ animation-delay: .6s; }
+.greetings > span:nth-child(5){ animation-delay: .8s; }
+.greetings > span:nth-child(6){ animation-delay: .10s; }
+.greetings > span:nth-child(7){ animation-delay: .2s; }
+.greetings > span:nth-child(8){ animation-delay: .4s; }
+.greetings > span:nth-child(9){ animation-delay: .6s; }
+
+/* DESCRIPCIÓN */
+.description{
+    font-size: clamp(1rem, 3.4vw, 1.4rem);
+    margin: 12px 0 18px 0;
+    z-index: 3;
+    background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    text-align: center;
+}
+
+.button{ z-index: 3; }
+.button a{ text-decoration: none; font-size: 1rem; color: #fff; }
+
+/* CONTENEDOR PRINCIPAL adaptativo */
+.content{
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px;
+}
+
+/* -------------------------
+   COLLAGE - estilos y comportamiento responsive
+   ------------------------- */
+.collage{
+    position: fixed;
+    inset: 0;
+    z-index: 1;           /* detrás del contenido */
+    pointer-events: none; /* no captura clicks */
+    overflow: hidden;
+    opacity: 0.95;
+}
+.collage img{
+    position: absolute;
+    user-select: none;
+    -webkit-user-drag: none;
+    object-fit: cover;
+    opacity: 0.95;
+    filter: saturate(1.05) contrast(1.02) drop-shadow(0 8px 18px rgba(0,0,0,0.45));
+    transition: transform 400ms ease, opacity 400ms ease;
+    mix-blend-mode: screen;
+    will-change: transform;
+}
+
+/* Posiciones desktop */
+.c1 { top: -6%; left: -6%; width: 44vw; transform: rotate(-8deg); }
+.c2 { top: 6%; right: -4%; width: 36vw; transform: rotate(6deg); }
+.c3 { bottom: 2%; left: 6%; width: 30vw; transform: rotate(-6deg); }
+.c4 { bottom: -6%; right: 8%; width: 38vw; transform: rotate(10deg); }
+.c5 { top: 48%; left: 30%; width: 28vw; transform: rotate(-14deg); opacity:0.95; }
+.c6 { top: 50%; right: 34%; width: 22vw; transform: rotate(18deg); opacity:0.92; }
+
+/* Overlay para contraste (ligero) */
+.overlay{
+    position: fixed;
+    inset: 0;
+    z-index: 1.5;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(9,10,20,0.18), rgba(9,10,20,0.40) 60%);
+    backdrop-filter: blur(2px);
+}
+
+/* Créditos en esquina inferior izquierda */
+.credits{
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    z-index: 4;
+    opacity: 0.95;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.88);
+    background: rgba(0,0,0,0.18);
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* -------------------------
+   MEDIA QUERIES — MÓVIL / TABLET
+   ------------------------- */
+
+/* Tablet / móviles grandes */
+@media (max-width: 900px){
+    .c1 { width: 38vw; left: -8%; top: -4%; transform: rotate(-6deg); }
+    .c2 { width: 32vw; right: -8%; top: 4%; transform: rotate(4deg); }
+    .c3 { width: 28vw; left: 4%; bottom: 2%; transform: rotate(-4deg); }
+    .c4 { width: 34vw; right: 6%; bottom: -4%; transform: rotate(8deg); }
+    .c5 { width: 24vw; left: 36%; top: 26%; transform: rotate(-12deg); }
+    .c6 { width: 20vw; right: 30%; top: 46%; transform: rotate(14deg); }
+    .overlay{ background: linear-gradient(180deg, rgba(9,10,20,0.16), rgba(9,10,20,0.38) 60%); }
+}
+
+/* Smartphones: simplificamos el collage, aumentamos legibilidad y tamaño táctil */
+@media (max-width: 574px){
+    body{ padding: 14px 10px; }
+    .content{ padding: 12px; }
+    .greetings{ font-size: clamp(2.4rem, 12vw, 4rem); }
+    .description{ font-size: 1.2rem; padding: 8px 12px; }
+    .botones a{ padding: 14px 20px; width: 100%; text-align: center; display: inline-block; }
+
+    /* Mostrar menos imágenes y más pequeñas para no tapar el contenido */
+    .c1{ width: 60vw; left: -20%; top: -12%; transform: rotate(-6deg); opacity:0.95; }
+    .c2, .c4, .c6 { display: none; }
+    .c3{ width: 48vw; left: -6%; bottom: -6%; transform: rotate(-2deg); }
+    .c5{ width: 120px; left: calc(50% - 60px); top: 18%; transform: rotate(0deg); }
+
+    .overlay{ background: linear-gradient(180deg, rgba(9,10,20,0.06), rgba(9,10,20,0.22) 60%); }
+    .credits{ font-size: 0.8rem; padding: 5px 8px; }
+}
+
+/* Pequeños móviles / portrait estrechos */
+@media (max-width: 360px){
+    .greetings{ font-size: clamp(2rem, 14vw, 3.6rem); }
+    .description{ font-size: 1.05rem; }
+    .c1{ left: -28%; width: 75vw; }
+    .c3{ width: 56vw; left: -12%; }
+    .c5{ width: 96px; height:96px; left: calc(50% - 48px); }
+}
+
+/* Accesibilidad: aumento de tamaño si el usuario lo requiere */
+@media (prefers-reduced-motion: reduce){
+    .greetings > span{ animation: none; }
+    .collage img, .botones a{ transition: none; }
+}
+
+/* Sugerencias rápidas:
+   - Si quieres aún menos distracción en móvil cambia `.collage { opacity: 0.8; }` o muestra sólo .c5.
+   - Para parallax simple dime y agrego un pequeño script que mueva las capas según el cursor/touch.
+*/
